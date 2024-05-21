@@ -11,7 +11,7 @@ async function getAllMovies (req, res) {
                                 .skip(offset)
                                 .limit(limit)
 
-        const count = await Movie.count()
+        const count = await Movie.countDocuments()
 
         res.json({
             message: 'success',
