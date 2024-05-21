@@ -1,25 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const Movie = require('../models/movie');
+
+const {
+  getAllMovies,
+  getOneMovie
+} = require("../controllers/movies")
 
 // Get all movies
-router.get('/', async (req, res) => {
-  try {
-    const movies = await Movie.find({});
-    res.json(movies);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+router.get('/', getAllMovies);
 
 // Get a single movie by ID
-router.get('/:id', async (req, res) => {
-  try {
-    const movie = await Movie.findById(req.params.id);
-    res.json(movie);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+router.get('/:id', getOneMovie);
 
 module.exports = router;

@@ -16,6 +16,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // logs requests to the server
 app.use(logger('dev'))
+// further logs
+app.use((req, res, next) => {
+    console.log(`Incoming request: ${req.method} ${req.url}`);
+    next();
+});
+
+app.use((err, req, res, next) => {
+    console.error('Error:', err);
+    res.status(500).send('Internal Server Error');
+});
 
 /*
     ROUTES
@@ -35,4 +45,4 @@ app.listen(PORT, () => {
     console.log(`server listening on port ${PORT}`);
 
     connectToMongoDB();
-});
+}).setTimeout(500000); // Set timeout to a higher value
