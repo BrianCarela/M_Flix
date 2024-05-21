@@ -3,7 +3,7 @@ const Comment = require('../models/comment');
 async function getOneComment (req, res) {
     try {
         
-        let result = await Comment.findOne({ movie_id: req.params.movieId });
+        let result = await Comment.find({ movie_id: req.params.movieId });
 
         res.json({
             message: 'success',
