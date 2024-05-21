@@ -5,11 +5,11 @@ async function getAllMovies (req, res) {
         // default page 1
         const page = parseInt(req.params.page) || 1
         const limit = 10
+        const offset = (page-1)*limit
 
-        let movies = await Movie.find({})
+        let movies = await Movie.find()
+                                .skip(offset)
                                 .limit(limit)
-                                .skip((page-1)*limit)
-                                .toArray()
 
         const count = await Movie.count()
 
