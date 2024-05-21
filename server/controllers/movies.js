@@ -2,11 +2,24 @@ const Movie = require('../models/movie');
 
 async function getAllMovies (req, res) {
     try {
-        let results = await Movie.find({});
+        // default page 1
+        const page = parseInt(req.params.page) || 1
+        const limit = 10
+
+        let movies = await Movie.find({})
+                                .limit(limit)
+                                .skip((page-1)*limit)
+                                .toArray()
+
+        const count = await Movie.count()
 
         res.json({
             message: 'success',
-            payload: results
+            payload: {
+                movies,
+                totalPages: Math.ceil(count/limit),
+                currentPage: page
+            }
         })
     } catch (error) {
         let errorObj = {
