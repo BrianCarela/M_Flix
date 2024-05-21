@@ -7,9 +7,9 @@ const {
 } = require("../controllers/movies")
 
 // Get all movies
-router.get('/', getAllMovies);
+router.get('/:page', getAllMovies);
 
 // Get a single movie by ID
-router.get('/:id', getOneMovie);
+router.get('/details/:id', getOneMovie);
 
 module.exports = router;
