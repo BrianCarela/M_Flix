@@ -45,11 +45,11 @@ async function getAllMovies (req, res) {
 async function getOneMovie (req, res) {
     try {
         
-        let result = await Movie.findById(req.params.id).populate('comments');
+        let movie = await Movie.findById(req.params.id).populate('comments');
 
         res.json({
             message: 'success',
-            payload: result
+            payload: movie
         })
     } catch (error) {
         let errorObj = {
