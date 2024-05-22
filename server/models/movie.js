@@ -42,17 +42,14 @@ const movieSchema = new mongoose.Schema({
   },
   num_mflix_comments: Number,
   comments: [{
-    name: String,
-    email: String,
-    movie_id: mongoose.Schema.Types.ObjectId,
-    text: String,
-    date: Date
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Comment'
   }]
 });
 
-const Movie = mongoose.model('Movie', movieSchema);
-
 // Create a text index on the 'title' and 'plot' fields
 movieSchema.index({ title: 'text', plot: 'text' });
+
+const Movie = mongoose.model('Movie', movieSchema);
 
 module.exports = Movie;
