@@ -7,11 +7,20 @@ async function getAllMovies (req, res) {
         const limit = 10
         const offset = (page-1)*limit
 
-        let movies = await Movie.find()
-                                .skip(offset)
-                                .limit(limit)
+        // Get the search query from the request
+        const searchQuery = req.query.q;
 
-        const count = await Movie.countDocuments()
+        let query = {};
+        if (searchQuery) {
+            // Create a text search query if searchQuery is provided
+            query = { $text: { $search: searchQuery } };
+        }
+
+        let movies = await Movie.find(query)
+                                .skip(offset)
+                                .limit(limit);
+
+        const count = await Movie.countDocuments(query);
 
         res.json({
             message: 'success',
