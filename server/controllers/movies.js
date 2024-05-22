@@ -45,7 +45,7 @@ async function getAllMovies (req, res) {
 async function getOneMovie (req, res) {
     try {
         
-        let result = await Movie.findById(req.params.id);
+        let result = await Movie.findById(req.params.id).populate('comments');
 
         res.json({
             message: 'success',
