@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const movieSchema = new mongoose.Schema({
-  title: { type: String, index: true },
+  title: String,
   plot: String,
   genres: [String],
   runtime: Number,
@@ -44,5 +44,8 @@ const movieSchema = new mongoose.Schema({
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
+
+// Create a text index on the 'title' and 'plot' fields
+movieSchema.index({ title: 'text', plot: 'text' });
 
 module.exports = Movie;
