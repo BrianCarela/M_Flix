@@ -112,7 +112,7 @@ const App = () => {
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
           <CircularProgress />
           <Typography variant="h6" component="h1" gutterBottom>
-            Please waiy for server to wake up
+            Please wait for server to wake up
           </Typography>
         </Box>
       ) : (
