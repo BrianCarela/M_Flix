@@ -125,7 +125,7 @@ const App = () => {
           </Box>
         </>
       )}
-<a href="https://app.eraser.io/workspace/eNcvkNO5RZqZQLSniWq8?elements=dJVSJF9byHXrVrnH7SdOFQ">View on Eraser<br /><img src="https://app.eraser.io/workspace/eNcvkNO5RZqZQLSniWq8/preview?elements=dJVSJF9byHXrVrnH7SdOFQ&type=embed" /></a>
+
     </Container>
   );
 };
